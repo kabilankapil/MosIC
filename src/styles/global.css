@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f1f1f 50%, #0a1515 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ultra minimal radial glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(15, 118, 110, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Smooth gradient fade overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+/* Minimal circuit trace SVG background */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(20px, -10px); }
+  50% { transform: translate(-10px, 20px); }
+  75% { transform: translate(10px, -20px); }
+}
+
+@keyframes pulse-trace {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.12; }
+}
+
+/* Circuit node particles - minimal */
+.circuit-trace {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-trace 8s ease-in-out infinite;
+}
+
+.circuit-trace::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #0f766e;
+  box-shadow: 0 0 8px rgba(15, 118, 110, 0.3),
+              0 0 16px rgba(20, 184, 166, 0.1);
+  border-radius: 50%;
+}
+
+.circuit-trace::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100vh;
+  background: linear-gradient(180deg, transparent, rgba(15, 118, 110, 0.05), transparent);
+  left: 0.5px;
+  top: 0;
+  opacity: 0.3;
+}
+
+

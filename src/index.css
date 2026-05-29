@@ -1,0 +1,202 @@
+/* ============================================================
+   index.css — MosIC Solutions global styles
+   UPDATED: Added Barlow + DM Sans fonts, minor var additions
+   ============================================================ */
+
+/* ── Google Fonts (Barlow family + DM Sans) ── */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --color-bg:       #04080f;
+  --color-bg2:      #080e1a;
+  --color-surface:  #0d1526;
+  --color-surface-2:#111d34;
+  --color-teal:     #00e5c3;
+  --color-pink:     #ff2d78;
+  --color-blue:     #1a6fff;
+  --color-text:     #d6e4ff;
+  --color-muted:    #6a7fa8;
+  --font-head:      "Barlow Condensed", "Barlow", sans-serif;
+  --font-ui:        "DM Sans", "Barlow", sans-serif;
+  --font-mono:      "DM Mono", "Courier New", monospace;
+  --animate-float-chip:   floatChip 6s ease-in-out infinite;
+  --animate-blink-pin:    blinkPin 2s ease-in-out infinite;
+  --animate-spin-ring:    spinRing 20s linear infinite;
+  --animate-ticker-scroll:tickerScroll 30s linear infinite;
+}
+
+:root,
+[data-theme="dark"] {
+  --color-bg:       #04080f;
+  --color-bg2:      #080e1a;
+  --color-surface:  #0d1526;
+  --color-surface-2:#111d34;
+  --color-teal:     #00e5c3;
+  --color-pink:     #ff2d78;
+  --color-blue:     #1a6fff;
+  --color-text:     #d6e4ff;
+  --color-muted:    #6a7fa8;
+  --hero-top:       #0a1e3d;
+  --spotlight-glow-a:    rgba(0, 229, 195, 0.12);
+  --spotlight-glow-b:    rgba(26, 111, 255, 0.14);
+  --spotlight-base-mid:  #050b14;
+  --footer-grad-a:       #061a1a;
+  --footer-grad-b:       #0a1515;
+  --footer-muted:        #94a3b8;
+  --footer-muted-2:      #64748b;
+  --footer-text:         #cbd5e1;
+  --footer-social-bg:    rgba(20, 184, 166, 0.1);
+  --footer-social-border:rgba(20, 184, 166, 0.2);
+  --footer-social-hover-bg:  rgba(20, 184, 166, 0.2);
+  --footer-social-hover-border: rgba(20, 184, 166, 0.4);
+  --footer-heading-b:    #facc15;
+  --nav-h: 70px;
+}
+
+[data-theme="light"] {
+  --color-bg:       #f4f7ff;
+  --color-bg2:      #eaf1ff;
+  --color-surface:  #ffffff;
+  --color-surface-2:#edf3ff;
+  --color-teal:     #008d80;
+  --color-pink:     #d72872;
+  --color-blue:     #0a66e8;
+  --color-text:     #132743;
+  --color-muted:    #4f6489;
+  --hero-top:       #c9dcff;
+  --spotlight-glow-a:    rgba(0, 141, 128, 0.14);
+  --spotlight-glow-b:    rgba(10, 102, 232, 0.16);
+  --spotlight-base-mid:  #dce8ff;
+  --footer-grad-a:       #e2ecff;
+  --footer-grad-b:       #d5e4ff;
+  --footer-muted:        #4f6489;
+  --footer-muted-2:      #5d7092;
+  --footer-text:         #2b3f62;
+  --footer-social-bg:    rgba(0, 141, 128, 0.1);
+  --footer-social-border:rgba(0, 141, 128, 0.24);
+  --footer-social-hover-bg:  rgba(0, 141, 128, 0.18);
+  --footer-social-hover-border: rgba(0, 141, 128, 0.34);
+  --footer-heading-b:    #f0b700;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  overflow-x: hidden;
+  /* Smooth theme transitions */
+  transition: background 0.3s, color 0.3s;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ── Keyframes ── */
+@keyframes floatChip {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-16px); }
+}
+
+@keyframes blinkPin {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 1; }
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes spotlightFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── Utility classes ── */
+@layer utilities {
+  .content-fluid {
+    width: 100%;
+    max-width: 1720px;
+    margin-inline: auto;
+  }
+
+  .hero-safe-height {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .spotlight-atmosphere {
+    background:
+      radial-gradient(circle at 15% 20%, var(--spotlight-glow-a) 0%, transparent 42%),
+      radial-gradient(circle at 85% 18%, var(--spotlight-glow-b) 0%, transparent 45%),
+      linear-gradient(180deg, var(--color-bg2) 0%, var(--spotlight-base-mid) 45%, var(--color-bg) 100%);
+  }
+
+  .hero-bg {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      var(--hero-top) 0%,
+      var(--color-bg) 70%
+    );
+  }
+
+  .spotlight-card {
+    position: relative;
+  }
+
+  .spotlight-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(120deg, rgba(0, 229, 195, 0.06), transparent 38%, rgba(26, 111, 255, 0.06));
+  }
+
+  .spotlight-float {
+    animation: spotlightFloat 6s ease-in-out infinite;
+  }
+
+  .circuit-grid {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='10' y='10' width='4' height='4' fill='%2300e5c3'/%3E%3Crect x='66' y='66' width='4' height='4' fill='%2300e5c3'/%3E%3Crect x='66' y='10' width='4' height='4' fill='%2300e5c3'/%3E%3Crect x='10' y='66' width='4' height='4' fill='%2300e5c3'/%3E%3Cpath d='M12 14v20h20M68 14v20H48M12 66v-20h20M68 66v-20H48' stroke='%2300e5c3' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%2300e5c3'/%3E%3Cpath d='M14 40h20M46 40h20M40 14v20M40 46v20' stroke='%2300e5c3' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ticker-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+
+  .spotlight-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}
