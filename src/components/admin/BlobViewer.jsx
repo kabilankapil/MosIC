@@ -1,4 +1,5 @@
 import { useAuthBlob, downloadBlob } from "../../hooks/useAuthBlob";
+import { useToast } from "./shared/ToastContext";
 
 /**
  * Drop-in replacement for <img> / <iframe> that loads blobs securely.
@@ -11,6 +12,7 @@ import { useAuthBlob, downloadBlob } from "../../hooks/useAuthBlob";
  *   className — optional CSS class for the img/iframe element
  */
 export default function BlobViewer({ blobId, fileType, filename = "file", className }) {
+  const toast = useToast();
   const { src, loading, error } = useAuthBlob(blobId);
 
   const isImage = fileType?.startsWith("image/");
@@ -45,7 +47,7 @@ export default function BlobViewer({ blobId, fileType, filename = "file", classN
       <div style={{ marginTop: 10 }}>
         <button
           className="detail-download-btn"
-          onClick={() => downloadBlob(blobId, filename).catch((e) => alert(e.message))}
+          onClick={() => downloadBlob(blobId, filename).catch((e) => toast.error(e.message))}
         >
           ⬇ Download
         </button>
