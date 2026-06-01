@@ -8,7 +8,6 @@ import {
 } from "../utils/userStore";
 import ActivityLog   from "../components/admin/ActivityLog";
 import UserManagement from "../components/admin/UserManagement";
-import ContentManager from "../components/admin/ContentManager";
 import Sales         from "../components/admin/Sales";
 import Party         from "../components/admin/Party";
 import Purchase      from "../components/admin/Purchase";
