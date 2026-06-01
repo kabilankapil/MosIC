@@ -61,14 +61,35 @@ export function TableScroller({ children }) {
 export function Pagination({ total, page, onChange }) {
   const totalPages = Math.ceil(total / PAGE_SIZE);
   if (totalPages <= 1) return null;
+
+  const getPages = () => {
+    const pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+      return pages;
+    }
+    pages.push(1);
+    if (page > 3) pages.push("...");
+    for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) {
+      pages.push(i);
+    }
+    if (page < totalPages - 2) pages.push("...");
+    pages.push(totalPages);
+    return pages;
+  };
+
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 5, marginTop: 14, justifyContent: "flex-end" }}>
       <button className="act-btn act-cancel" onClick={() => onChange(page - 1)}
         disabled={page === 1} style={{ padding: "4px 10px" }}>← Prev</button>
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-        <button key={p} className={`act-btn ${p === page ? "act-save" : "act-cancel"}`}
-          onClick={() => onChange(p)} style={{ padding: "4px 10px", minWidth: 32 }}>{p}</button>
-      ))}
+      {getPages().map((p, i) =>
+        p === "..." ? (
+          <span key={`ellipsis-${i}`} style={{ padding: "4px 6px", color: "var(--a-text-faint)", fontSize: "0.85rem" }}>…</span>
+        ) : (
+          <button key={p} className={`act-btn ${p === page ? "act-save" : "act-cancel"}`}
+            onClick={() => onChange(p)} style={{ padding: "4px 10px", minWidth: 32 }}>{p}</button>
+        )
+      )}
       <button className="act-btn act-cancel" onClick={() => onChange(page + 1)}
         disabled={page === totalPages} style={{ padding: "4px 10px" }}>Next →</button>
       <span style={{ fontSize: "0.78rem", color: "var(--a-text-faint)", marginLeft: 4 }}>{total} total</span>
