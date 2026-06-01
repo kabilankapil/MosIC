@@ -1,0 +1,34 @@
+.login-header {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(135deg, #0d1b1b 0%, #0a1515 100%);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.login-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-header-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+  padding: 3px 8px
+}
+
+.login-header-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(20, 184, 166, 0.9);
+}

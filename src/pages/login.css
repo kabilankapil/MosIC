@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - var(--header-total, 150px));
+  min-height: calc(100vh - 60px - 40px);
   padding: 24px 0;
   overflow: hidden;
   background: linear-gradient(135deg, #1a1a1a 0%, #0f1f1f 50%, #0a1515 100%);

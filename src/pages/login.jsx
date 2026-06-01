@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // old had Link after useNavigate.
 import { login } from "../api/auth";
 import { setCurrentUser, getCurrentUser, clearCurrentUser } from "../utils/userStore";
 import "./login.css";
@@ -135,12 +135,8 @@ export default function Login() {
         </form>
 
         <div className="login-footer">
-          <div className="login-divider">MosIC Solutions</div>
-          <p className="signup-link">
-            Don't have an account?{" "}
-            <Link to="/signup">Sign up here</Link>
-          </p>
-        </div>
+        <div className="login-divider">MosIC Office</div>
+      </div>
 
       </div>
     </div>
